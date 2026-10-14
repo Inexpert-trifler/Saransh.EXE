@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
 import confetti from "canvas-confetti";
+import GatewayFlow from "@/components/ui/gateway-flow";
 
 export function ContactSection() {
   const { contact } = portfolioData;
@@ -77,8 +78,31 @@ export function ContactSection() {
   };
 
   return (
-    <section id="contact" className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-b border-white/10 scroll-mt-24">
-      <div className="mx-auto max-w-7xl">
+    <section 
+      id="contact" 
+      className="relative py-24 sm:py-32 px-4 sm:px-6 lg:px-12 border-b border-white/10 scroll-mt-24 overflow-hidden bg-[#080808]"
+    >
+      {/* Gateway Flow Animated Background */}
+      <div 
+        className="absolute inset-0 z-0 overflow-hidden pointer-events-none select-none"
+        aria-hidden="true"
+      >
+        <GatewayFlow
+          mode="dark"
+          density={1.25}
+          speed={0.75}
+          strokeWidth={1}
+          opacity={0.88}
+          className="w-full h-full pointer-events-none"
+        />
+        {/* Subtle dark gradient overlay to frame section edges while preserving central wave luminosity */}
+        <div 
+          className="absolute inset-0 bg-gradient-to-b from-[#080808]/40 via-transparent to-[#080808]/50 pointer-events-none" 
+        />
+      </div>
+
+      {/* Content Layer above background */}
+      <div className="relative z-10 mx-auto max-w-7xl">
         {/* Header */}
         <div className="mb-12">
           <span className="font-mono text-xs font-semibold uppercase tracking-wider text-[#B9FF66]">
@@ -101,17 +125,17 @@ export function ContactSection() {
               I love collaborating with forward-thinking founders, creative teams, and fellow builders. Whether it&apos;s a greenfield build or scaling an existing frontend architecture, let&apos;s talk.
             </p>
 
-            {/* Email Card with Copy Action */}
-            <div className="rounded-xl border border-white/10 bg-[#111111] p-5">
+            {/* Email Card with Copy Action - Floating Glass Panel */}
+            <div className="rounded-2xl border border-white/12 bg-[rgba(12,14,14,0.38)] backdrop-blur-[14px] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.06),0_12px_36px_rgba(0,0,0,0.25)] transition-all duration-300 hover:border-white/20">
               <div className="flex items-center justify-between mb-3">
-                <span className="font-mono text-xs text-zinc-500 uppercase">DIRECT DISPATCH</span>
+                <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider">DIRECT DISPATCH</span>
                 <span className="flex items-center gap-1 font-mono text-xs text-[#B9FF66]">
                   <Clock className="h-3 w-3" />
                   {contact.responseTime}
                 </span>
               </div>
 
-              <div className="flex items-center justify-between gap-3 rounded-lg border border-white/10 bg-[#171717] p-3">
+              <div className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-white/[0.04] backdrop-blur-md p-3 transition-colors hover:border-[#B9FF66]/30">
                 <span className="font-mono text-xs sm:text-sm text-white font-semibold truncate">
                   {contact.email}
                 </span>
@@ -120,12 +144,12 @@ export function ContactSection() {
                   <button
                     onClick={handleCopyEmail}
                     aria-label="Copy email address"
-                    className="flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1.5 font-mono text-xs text-zinc-300 hover:bg-[#B9FF66] hover:text-[#080808] transition-colors"
+                    className="flex items-center gap-1.5 rounded-lg border border-white/10 bg-white/[0.06] backdrop-blur-sm px-2.5 py-1.5 font-mono text-xs text-zinc-200 hover:bg-[#B9FF66] hover:text-[#080808] hover:border-[#B9FF66] transition-all duration-200"
                   >
                     {copied ? (
                       <>
-                        <Check className="h-3.5 w-3.5 text-[#B9FF66]" />
-                        <span className="text-[#B9FF66] font-bold">COPIED</span>
+                        <Check className="h-3.5 w-3.5 text-[#080808]" />
+                        <span className="font-bold">COPIED</span>
                       </>
                     ) : (
                       <>
@@ -138,7 +162,7 @@ export function ContactSection() {
                   <a
                     href={`mailto:${contact.email}`}
                     aria-label="Open default mail client"
-                    className="rounded-md bg-white/10 p-1.5 text-zinc-300 hover:bg-[#B9FF66] hover:text-[#080808] transition-colors"
+                    className="rounded-lg border border-white/10 bg-white/[0.06] backdrop-blur-sm p-1.5 text-zinc-200 hover:bg-[#B9FF66] hover:text-[#080808] hover:border-[#B9FF66] transition-all duration-200"
                   >
                     <ArrowUpRight className="h-4 w-4" />
                   </a>
@@ -146,24 +170,24 @@ export function ContactSection() {
               </div>
             </div>
 
-            {/* Preferred Topics */}
-            <div>
-              <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider block mb-2">
+            {/* Preferred Topics - Glass Panel */}
+            <div className="rounded-2xl border border-white/10 bg-[rgba(12,14,14,0.30)] backdrop-blur-[12px] p-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]">
+              <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider block mb-2.5">
                 IDEAL COLLABORATIONS:
               </span>
-              <div className="space-y-1.5 font-mono text-xs text-zinc-400">
+              <div className="space-y-2 font-mono text-xs text-zinc-300">
                 {contact.preferredTopics.map((topic, idx) => (
                   <div key={idx} className="flex items-center gap-2">
-                    <span className="text-[#B9FF66]">&gt;</span>
+                    <span className="text-[#B9FF66] font-bold">&gt;</span>
                     <span>{topic}</span>
                   </div>
                 ))}
               </div>
             </div>
 
-            {/* Social channels */}
-            <div className="pt-4 border-t border-white/10">
-              <span className="font-mono text-xs text-zinc-500 uppercase tracking-wider block mb-3">
+            {/* Social channels - Glass styling */}
+            <div className="pt-2">
+              <span className="font-mono text-xs text-zinc-400 uppercase tracking-wider block mb-3">
                 NETWORK PROFILES:
               </span>
               <div className="flex items-center gap-3">
@@ -171,7 +195,7 @@ export function ContactSection() {
                   href="https://github.com/Inexpert-trifler"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="flex items-center gap-2 rounded-lg border border-white/10 bg-[#111111] px-3 py-2 text-xs font-mono text-zinc-300 hover:border-[#B9FF66] hover:text-[#B9FF66] transition-colors"
+                  className="flex items-center gap-2 rounded-xl border border-white/12 bg-[rgba(12,14,14,0.40)] backdrop-blur-md px-3.5 py-2.5 text-xs font-mono text-zinc-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] hover:border-[#B9FF66]/50 hover:bg-[#B9FF66]/10 hover:text-[#B9FF66] hover:shadow-[0_0_16px_rgba(185,255,102,0.15)] transition-all duration-200"
                 >
                   <GithubIcon className="h-3.5 w-3.5" />
                   <span>GitHub</span>
@@ -180,7 +204,7 @@ export function ContactSection() {
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="flex items-center gap-2 rounded-lg border border-white/10 bg-[#111111] px-3 py-2 text-xs font-mono text-zinc-300 hover:border-[#B9FF66] hover:text-[#B9FF66] transition-colors"
+                  className="flex items-center gap-2 rounded-xl border border-white/12 bg-[rgba(12,14,14,0.40)] backdrop-blur-md px-3.5 py-2.5 text-xs font-mono text-zinc-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] hover:border-[#B9FF66]/50 hover:bg-[#B9FF66]/10 hover:text-[#B9FF66] hover:shadow-[0_0_16px_rgba(185,255,102,0.15)] transition-all duration-200"
                 >
                   <LinkedinIcon className="h-3.5 w-3.5" />
                   <span>LinkedIn</span>
@@ -189,7 +213,7 @@ export function ContactSection() {
                   href="https://twitter.com"
                   target="_blank"
                   rel="noreferrer noopener"
-                  className="flex items-center gap-2 rounded-lg border border-white/10 bg-[#111111] px-3 py-2 text-xs font-mono text-zinc-300 hover:border-[#B9FF66] hover:text-[#B9FF66] transition-colors"
+                  className="flex items-center gap-2 rounded-xl border border-white/12 bg-[rgba(12,14,14,0.40)] backdrop-blur-md px-3.5 py-2.5 text-xs font-mono text-zinc-200 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] hover:border-[#B9FF66]/50 hover:bg-[#B9FF66]/10 hover:text-[#B9FF66] hover:shadow-[0_0_16px_rgba(185,255,102,0.15)] transition-all duration-200"
                 >
                   <TwitterIcon className="h-3.5 w-3.5" />
                   <span>Twitter / X</span>
@@ -198,11 +222,11 @@ export function ContactSection() {
             </div>
           </div>
 
-          {/* Right Column: Contact Form */}
+          {/* Right Column: Contact Form - Main Glass Panel */}
           <div className="lg:col-span-7">
-            <div className="rounded-2xl border border-white/10 bg-[#111111] p-6 sm:p-8 shadow-2xl">
-              {/* Demo Mode Notice */}
-              <div className="mb-6 flex items-start gap-2.5 rounded-lg border border-blue-400/20 bg-blue-400/5 p-3 font-mono text-xs text-blue-300">
+            <div className="rounded-2xl border border-white/14 bg-[rgba(12,14,14,0.38)] backdrop-blur-[16px] p-6 sm:p-8 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_20px_50px_rgba(0,0,0,0.3)] transition-all duration-300">
+              {/* Demo Mode Notice - Glass Alert */}
+              <div className="mb-6 flex items-start gap-2.5 rounded-xl border border-blue-400/25 bg-blue-500/[0.08] backdrop-blur-md p-3.5 font-mono text-xs text-blue-200 shadow-[inset_0_1px_0_rgba(147,197,253,0.08)]">
                 <Info className="h-4 w-4 shrink-0 mt-0.5 text-blue-400" />
                 <span>{contact.formNotice}</span>
               </div>
@@ -211,7 +235,7 @@ export function ContactSection() {
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   {/* Name */}
                   <div>
-                    <label htmlFor="name" className="block font-mono text-xs text-zinc-400 mb-1.5">
+                    <label htmlFor="name" className="block font-mono text-xs text-zinc-300 mb-1.5">
                       YOUR NAME / ALIAS *
                     </label>
                     <input
@@ -220,7 +244,7 @@ export function ContactSection() {
                       value={formState.name}
                       onChange={(e) => setFormState({ ...formState, name: e.target.value })}
                       placeholder="e.g. Alex Vance"
-                      className="w-full rounded-lg border border-white/10 bg-[#171717] px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-[#B9FF66] focus:outline-none focus:ring-1 focus:ring-[#B9FF66]"
+                      className="w-full rounded-xl border border-white/12 bg-black/30 backdrop-blur-md px-4 py-2.5 text-sm text-white placeholder-zinc-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-all duration-200 focus:border-[#B9FF66] focus:bg-black/45 focus:shadow-[0_0_16px_rgba(185,255,102,0.2),inset_0_1px_0_rgba(255,255,255,0.06)] focus:outline-none focus:ring-1 focus:ring-[#B9FF66]"
                     />
                     {errors.name && (
                       <p className="mt-1 font-mono text-xs text-red-400">{errors.name}</p>
@@ -229,7 +253,7 @@ export function ContactSection() {
 
                   {/* Email */}
                   <div>
-                    <label htmlFor="email" className="block font-mono text-xs text-zinc-400 mb-1.5">
+                    <label htmlFor="email" className="block font-mono text-xs text-zinc-300 mb-1.5">
                       EMAIL ADDRESS *
                     </label>
                     <input
@@ -238,7 +262,7 @@ export function ContactSection() {
                       value={formState.email}
                       onChange={(e) => setFormState({ ...formState, email: e.target.value })}
                       placeholder="alex@domain.com"
-                      className="w-full rounded-lg border border-white/10 bg-[#171717] px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-[#B9FF66] focus:outline-none focus:ring-1 focus:ring-[#B9FF66]"
+                      className="w-full rounded-xl border border-white/12 bg-black/30 backdrop-blur-md px-4 py-2.5 text-sm text-white placeholder-zinc-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-all duration-200 focus:border-[#B9FF66] focus:bg-black/45 focus:shadow-[0_0_16px_rgba(185,255,102,0.2),inset_0_1px_0_rgba(255,255,255,0.06)] focus:outline-none focus:ring-1 focus:ring-[#B9FF66]"
                     />
                     {errors.email && (
                       <p className="mt-1 font-mono text-xs text-red-400">{errors.email}</p>
@@ -248,27 +272,27 @@ export function ContactSection() {
 
                 {/* Subject Topic */}
                 <div>
-                  <label htmlFor="subject" className="block font-mono text-xs text-zinc-400 mb-1.5">
+                  <label htmlFor="subject" className="block font-mono text-xs text-zinc-300 mb-1.5">
                     TRANSMISSION TOPIC
                   </label>
                   <select
                     id="subject"
                     value={formState.subject}
                     onChange={(e) => setFormState({ ...formState, subject: e.target.value })}
-                    className="w-full rounded-lg border border-white/10 bg-[#171717] px-4 py-2.5 text-sm text-white focus:border-[#B9FF66] focus:outline-none focus:ring-1 focus:ring-[#B9FF66]"
+                    className="w-full rounded-xl border border-white/12 bg-black/30 backdrop-blur-md px-4 py-2.5 text-sm text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-all duration-200 focus:border-[#B9FF66] focus:bg-black/45 focus:shadow-[0_0_16px_rgba(185,255,102,0.2),inset_0_1px_0_rgba(255,255,255,0.06)] focus:outline-none focus:ring-1 focus:ring-[#B9FF66]"
                   >
                     {contact.preferredTopics.map((t, idx) => (
-                      <option key={idx} value={t} className="bg-[#171717]">
+                      <option key={idx} value={t} className="bg-[#121415] text-white">
                         {t}
                       </option>
                     ))}
-                    <option value="Other" className="bg-[#171717]">Other Collaboration</option>
+                    <option value="Other" className="bg-[#121415] text-white">Other Collaboration</option>
                   </select>
                 </div>
 
                 {/* Message */}
                 <div>
-                  <label htmlFor="message" className="block font-mono text-xs text-zinc-400 mb-1.5">
+                  <label htmlFor="message" className="block font-mono text-xs text-zinc-300 mb-1.5">
                     PROJECT BRIEF / MESSAGE *
                   </label>
                   <textarea
@@ -277,7 +301,7 @@ export function ContactSection() {
                     value={formState.message}
                     onChange={(e) => setFormState({ ...formState, message: e.target.value })}
                     placeholder="Tell me about the problem, timeline, or idea you're looking to explore..."
-                    className="w-full rounded-lg border border-white/10 bg-[#171717] px-4 py-2.5 text-sm text-white placeholder-zinc-600 focus:border-[#B9FF66] focus:outline-none focus:ring-1 focus:ring-[#B9FF66]"
+                    className="w-full rounded-xl border border-white/12 bg-black/30 backdrop-blur-md px-4 py-2.5 text-sm text-white placeholder-zinc-500 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] transition-all duration-200 focus:border-[#B9FF66] focus:bg-black/45 focus:shadow-[0_0_16px_rgba(185,255,102,0.2),inset_0_1px_0_rgba(255,255,255,0.06)] focus:outline-none focus:ring-1 focus:ring-[#B9FF66]"
                   />
                   {errors.message && (
                     <p className="mt-1 font-mono text-xs text-red-400">{errors.message}</p>
@@ -288,7 +312,7 @@ export function ContactSection() {
                 <button
                   type="submit"
                   disabled={submitting}
-                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#B9FF66] py-3.5 font-mono text-sm font-bold text-[#080808] transition-all hover:bg-[#a3e635] hover:shadow-[0_0_20px_rgba(185,255,102,0.4)] disabled:opacity-50"
+                  className="flex w-full items-center justify-center gap-2 rounded-xl bg-[#B9FF66] py-3.5 font-mono text-sm font-bold text-[#080808] transition-all duration-200 hover:bg-[#a3e635] hover:shadow-[0_0_24px_rgba(185,255,102,0.45)] active:scale-[0.99] disabled:opacity-50"
                 >
                   {submitting ? (
                     <span>DISPATCHING PACKETS...</span>
@@ -302,7 +326,7 @@ export function ContactSection() {
 
                 {/* Feedback Alert */}
                 {submittedFeedback && (
-                  <div className="mt-4 rounded-lg border border-[#B9FF66]/30 bg-[#B9FF66]/10 p-4 font-mono text-xs text-[#B9FF66]">
+                  <div className="mt-4 rounded-xl border border-[#B9FF66]/40 bg-[#B9FF66]/10 backdrop-blur-md p-4 font-mono text-xs text-[#B9FF66] shadow-[0_0_20px_rgba(185,255,102,0.15)]">
                     {submittedFeedback}
                   </div>
                 )}

@@ -2,12 +2,12 @@
 
 import React from "react";
 import { GlyphMatrix } from "./glyph-matrix";
-import { ArrowDownRight, ArrowUpRight, Terminal, MapPin } from "lucide-react";
-import { GithubIcon, LinkedinIcon, TwitterIcon } from "@/components/ui/icons";
+import { ArrowDownRight, ArrowUpRight, MapPin } from "lucide-react";
 import { portfolioData } from "@/data/portfolio";
+import { GlassCard } from "@/components/ui/glass-card";
 
 export function MinimalistHero() {
-  const { profile } = portfolioData;
+  const { profile, contact } = portfolioData;
 
   return (
     <section id="hero" className="relative min-h-[92vh] flex flex-col justify-center overflow-hidden px-4 sm:px-6 lg:px-12 pt-28 pb-16 border-b border-white/10 scroll-mt-24">
@@ -85,78 +85,42 @@ export function MinimalistHero() {
             </div>
           </div>
 
-          {/* Right Floating Terminal Card / Digital Identity Detail */}
+          {/* Right Floating Interactive 3D Glass Card */}
           <div className="lg:col-span-4 w-full">
-            <div className="rounded-xl border border-white/15 bg-[#111111]/90 p-5 shadow-2xl backdrop-blur-md">
-              <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
-                <div className="flex items-center gap-2">
-                  <Terminal className="h-4 w-4 text-[#B9FF66]" />
-                  <span className="font-mono text-xs font-bold text-white tracking-wider">
-                    SARANSH.EXE_NODE
-                  </span>
-                </div>
-                <span className="rounded bg-white/5 px-2 py-0.5 font-mono text-[10px] text-[#B9FF66]">
-                  ONLINE
-                </span>
-              </div>
-
-              <div className="space-y-2.5 font-mono text-xs text-zinc-300">
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">ENV:</span>
-                  <span className="text-white">Next.js 16 / React 19</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">CORE FOCUS:</span>
-                  <span className="text-[#B9FF66]">Full Stack & AI Agents</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">DESIGN LANG:</span>
-                  <span className="text-[#38BDF8]">Digital Brutalism</span>
-                </div>
-                <div className="flex justify-between">
-                  <span className="text-zinc-500">GITHUB:</span>
-                  <span className="text-zinc-300">@Inexpert-trifler</span>
-                </div>
-              </div>
-
-              {/* Social Quick-Links */}
-              <div className="mt-5 pt-4 border-t border-white/10 flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <a
-                    href="https://github.com/Inexpert-trifler"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="GitHub profile"
-                    className="rounded-lg border border-white/10 bg-[#171717] p-2 text-zinc-400 hover:border-[#B9FF66] hover:text-[#B9FF66] transition-colors"
-                  >
-                    <GithubIcon className="h-4 w-4" />
-                  </a>
-                  <a
-                    href="https://linkedin.com"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="LinkedIn profile"
-                    className="rounded-lg border border-white/10 bg-[#171717] p-2 text-zinc-400 hover:border-[#B9FF66] hover:text-[#B9FF66] transition-colors"
-                  >
-                    <LinkedinIcon className="h-4 w-4" />
-                  </a>
-                  <a
-                    href="https://twitter.com"
-                    target="_blank"
-                    rel="noreferrer noopener"
-                    aria-label="Twitter / X profile"
-                    className="rounded-lg border border-white/10 bg-[#171717] p-2 text-zinc-400 hover:border-[#B9FF66] hover:text-[#B9FF66] transition-colors"
-                  >
-                    <TwitterIcon className="h-4 w-4" />
-                  </a>
-                </div>
-
-                <div className="text-right">
-                  <span className="text-[10px] font-mono text-zinc-500 block">TIMEZONE</span>
-                  <span className="font-mono text-xs text-white">{profile.timezone} (UTC+5:30)</span>
-                </div>
-              </div>
-            </div>
+            <GlassCard
+              title="SARANSH.EXE"
+              badgeText="ONLINE"
+              isOnline={true}
+              items={[
+                { label: "ENVIRONMENT", value: "Next.js 16 / React 19", accent: "white" },
+                { label: "CORE FOCUS", value: "Full Stack & AI Agents", accent: "lime" },
+                { label: "DESIGN LANGUAGE", value: "Digital Brutalism", accent: "cyan" },
+                { label: "GITHUB", value: "@Inexpert-trifler", accent: "muted" },
+                { label: "TIMEZONE", value: "IST (UTC+5:30)", accent: "white" },
+              ]}
+              socialLinks={[
+                {
+                  label: "GitHub",
+                  href: "https://github.com/Inexpert-trifler",
+                  icon: "github",
+                  ariaLabel: "GitHub profile @Inexpert-trifler",
+                },
+                {
+                  label: "LinkedIn",
+                  href: "https://www.linkedin.com/in/saransh-yadav-b72643336/",
+                  icon: "linkedin",
+                  ariaLabel: "LinkedIn profile Saransh Yadav",
+                },
+                {
+                  label: "Email",
+                  href: `mailto:${contact.email}`,
+                  icon: "mail",
+                  ariaLabel: `Send direct transmission to ${contact.email}`,
+                },
+              ]}
+              actionLabel="VIEW PROFILE"
+              actionHref="#about"
+            />
           </div>
         </div>
       </div>

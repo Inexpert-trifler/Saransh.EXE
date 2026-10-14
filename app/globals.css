@@ -5,12 +5,25 @@
   --foreground: #f5f5f5;
   --surface: #111111;
   --surface-elevated: #171717;
+  --card: #111111;
+  --card-foreground: #f5f5f5;
+  --popover: #141414;
+  --popover-foreground: #f5f5f5;
+  --primary: #B9FF66;
+  --primary-foreground: #080808;
+  --muted: #1a1a1a;
+  --muted-foreground: #a1a1aa;
+  --border: rgba(255, 255, 255, 0.12);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #B9FF66;
   --accent-lime: #B9FF66;
   --accent-lime-hover: #a3e635;
   --accent-lime-dim: rgba(185, 255, 102, 0.12);
   --text-muted: #a1a1aa;
   --border-subtle: rgba(255, 255, 255, 0.12);
   --border-accent: rgba(185, 255, 102, 0.35);
+  --color-chart-1: #B9FF66;
+  --color-chart-2: #B9FF66;
 }
 
 @theme inline {
@@ -18,12 +31,25 @@
   --color-foreground: var(--foreground);
   --color-surface: var(--surface);
   --color-surface-elevated: var(--surface-elevated);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
   --color-accent-lime: var(--accent-lime);
   --color-accent-lime-hover: var(--accent-lime-hover);
   --color-accent-lime-dim: var(--accent-lime-dim);
   --color-text-muted: var(--text-muted);
   --color-border-subtle: var(--border-subtle);
   --color-border-accent: var(--border-accent);
+  --color-chart-1: var(--color-chart-1);
+  --color-chart-2: var(--color-chart-2);
   --font-sans: var(--font-space), system-ui, -apple-system, sans-serif;
   --font-mono: var(--font-jetbrains), monospace;
 }
